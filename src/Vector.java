@@ -1,7 +1,7 @@
 import java.util.Arrays;
 
 public class Vector {
-    private String[] items;
+    private final String[] items;
     private int length;
 
     public Vector(int length){
@@ -17,6 +17,18 @@ public class Vector {
         } else {
             return false;
         }
+    }
+
+    public boolean add(int position, String item){
+        if(!(position >= 0 && position < length)){
+            throw new IllegalArgumentException();
+        }
+        for(int i=length-1; i>=position; i--){
+            items[i+1]= items[i];
+        }
+        items[position] = item;
+        length++;
+        return true;
     }
 
     public String find(int position){
